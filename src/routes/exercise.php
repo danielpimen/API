@@ -3,11 +3,12 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 require '../../vendor/autoload.php';
+require('../config/db.php');
 
-$app = new \Slim\App;
+$app = new \Slim\App(['settings' => ['displayErrorDetails' => true]]);
 
-$app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
-    echo '{name}';
+$app->get('/hello/daniel', function (Request $request, Response $response, array $args) {
+    echo 'Hi Daniel';
 });
 
 $app->get('/api/exercises', function(Request $request, Response $response){
