@@ -44,8 +44,8 @@ $app->get('/api/exercises2', function(Request $request, Response $response){
     }
 });
 
-$app->get('/api/exercises/3', function(Request $request, Response $response){
-    $sql = "SELECT * FROM exercises WHERE category = 3";
+$app->get('/api/exercises/triceps', function(Request $request, Response $response){
+    $sql = "SELECT * FROM exercises WHERE category = 383";
     try{
         // Get DB Object
         $db = new db();
@@ -59,6 +59,7 @@ $app->get('/api/exercises/3', function(Request $request, Response $response){
         echo '{"error": {"text": '.$e->getMessage().'}';
     }
 });
+
 
 
 $app->run();
