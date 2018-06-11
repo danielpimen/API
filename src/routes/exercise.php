@@ -17,7 +17,7 @@ $app->get('/api/exercises', function(Request $request, Response $response){
     $sql = "SELECT * FROM exercises";
     try{
         // Get DB Object
-        echo 'hell';
+        echo 'hello';
         $db = new db();
         // Connect
         $db = $db->connect();
@@ -120,6 +120,27 @@ $app->get('/api/exercises/other', function(Request $request, Response $response)
         echo '{"error": {"text": '.$e->getMessage().'}';
     }
 });
+
+//Get Specific workout with ID 
+
+$app->get('/api/exercises/{id}', function(Request $request, Response $response){
+    $id = $request->getAttribute('id');
+    $sql = "SELECT * FROM exercises WHERE id = $id";
+
+    try{
+        $db = new db();
+        $db = $db->connect();
+        $stmt = $db->query($sql);
+        $exercises = $stmt->fetch(PDO::FETCH_OBJ);
+        $db = null;
+        echo json_encode($exercises);
+    }catch(PDOException $e){
+        echo '{"error": {"text": '.$e->getMessage().'}';
+
+    }
+
+});
+
 
 
 $app->run();
